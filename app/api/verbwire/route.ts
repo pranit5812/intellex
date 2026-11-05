@@ -1,5 +1,6 @@
 const verbwire = require("verbwire")(process.env.VERBWIRE_API_KEY);
 import fs from "fs";
+import path from "path";
 import { NextRequest, NextResponse } from "next/server";
 
 async function mintSimpleContractNFT(walletAddress: string) {
@@ -13,8 +14,7 @@ async function mintSimpleContractNFT(walletAddress: string) {
 		recipientAddress?: string; // This is now an optional property
 	} = {
 		filePath: fs.createReadStream(
-			// hardcoded for now
-			"C:\\Users\\ahmed\\Desktop\\PC\\Repos\\intellex\\public\\goldbadge.png"
+			path.join(process.cwd(), "public", "goldbadge.png")
 		),
 		name: "the intellex gold award",
 		description: "intellex nft description",
