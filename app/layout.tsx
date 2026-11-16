@@ -2,12 +2,16 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/components/auth-provider";
+import { AnimatedBackground } from "@/components/animated-background";
+import Navbar from "@/components/component/navbar";
+import { Chatbot } from "@/components/chatbot";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Intellex",
-	description: "Decentralized skill sharing platform",
+	title: "Intellex — Decentralized P2P Skill Sharing Platform",
+	description: "Connect and exchange skills 1-on-1 with peers, collaborate live, and earn verifiable on-chain NFT badges.",
 };
 
 export default function RootLayout({
@@ -18,15 +22,19 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
-			<body>
+			<body className={inter.className}>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange
 				>
-					<div className="fixed h-screen w-full bg-gradient-to-br dark:from-zinc-800 dark:to-zinc-950 from-zinc-50 to-zinc-300 -z-10" />
-					{children}
+					<AuthProvider>
+						<AnimatedBackground />
+						<Navbar />
+						<div className="min-h-[calc(100vh-4rem)] flex flex-col">{children}</div>
+						<Chatbot />
+					</AuthProvider>
 				</ThemeProvider>
 			</body>
 		</html>

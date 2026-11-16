@@ -13,6 +13,17 @@ import { Meeting } from "@/components/component/summary/summary";
 
 const LOCAL_STORAGE_KEY = "intellex_meetings_data";
 
+export function generateRoomCode(): string {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let part1 = "";
+  let part2 = "";
+  for (let i = 0; i < 4; i++) {
+    part1 += chars.charAt(Math.floor(Math.random() * chars.length));
+    part2 += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return `INTX-${part1}-${part2}`;
+}
+
 export async function getStoredMeetings(): Promise<Meeting[]> {
   try {
     if (typeof window !== "undefined") {
@@ -27,6 +38,7 @@ export async function getStoredMeetings(): Promise<Meeting[]> {
             const data = d.data();
             return {
               id: d.id,
+              roomCode: data.roomCode || undefined,
               user1: {
                 name: data.user1?.name || "",
                 photoURL: data.user1?.photoURL || "",
@@ -70,8 +82,10 @@ export async function getStoredMeetings(): Promise<Meeting[]> {
 }
 
 export async function saveMeeting(meeting: Omit<Meeting, "id">): Promise<Meeting> {
+  const roomCode = meeting.roomCode || generateRoomCode();
   const newMeeting: Meeting = {
     ...meeting,
+    roomCode,
     id: `local-${Date.now()}`,
   };
 
@@ -80,6 +94,7 @@ export async function saveMeeting(meeting: Omit<Meeting, "id">): Promise<Meeting
     try {
       const docRef = await addDoc(collection(db, "meetings"), {
         ...meeting,
+        roomCode,
         createdAt: serverTimestamp(),
       });
       newMeeting.id = docRef.id;

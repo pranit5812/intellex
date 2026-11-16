@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { X } from "lucide-react";
+import { X, Link2, Copy, Check, RotateCcw } from "lucide-react";
 import { Meeting } from "./summary/summary";
+import { generateRoomCode } from "@/lib/meetings";
 
 interface CreateMeetingModalProps {
   isOpen: boolean;
@@ -28,9 +29,29 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
   const [user2Photo, setUser2Photo] = useState("");
 
   const [points, setPoints] = useState("");
+  const [roomCode, setRoomCode] = useState("");
+  const [copiedLink, setCopiedLink] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (isOpen && !roomCode) {
+      setRoomCode(generateRoomCode());
+    }
+  }, [isOpen, roomCode]);
+
   if (!isOpen) return null;
+
+  const handleCopyInviteLink = () => {
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const inviteUrl = `${origin}/session?room=${encodeURIComponent(roomCode)}`;
+    navigator.clipboard.writeText(inviteUrl);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+
+  const handleRegenerateCode = () => {
+    setRoomCode(generateRoomCode());
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +65,6 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
       return;
     }
 
-    // Convert newline-separated or semicolon-separated points to semicolon-delimited string
     const formattedSummary = points
       .split("\n")
       .map((p) => p.trim())
@@ -52,6 +72,7 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
       .join("; ");
 
     onSave({
+      roomCode: roomCode || generateRoomCode(),
       user1: {
         name: user1Name.trim(),
         description: user1Desc.trim() || "Member",
@@ -73,6 +94,7 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
     setUser2Desc("");
     setUser2Photo("");
     setPoints("");
+    setRoomCode("");
     setError("");
     onClose();
   };
@@ -90,9 +112,9 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
         </button>
 
         <CardHeader className="pb-4">
-          <CardTitle className="text-2xl font-bold">Create Meeting / User Pair</CardTitle>
+          <CardTitle className="text-2xl font-bold">Arrange Meeting & Room</CardTitle>
           <CardDescription>
-            Enter the details for both users and the summary of their collaboration.
+            A unique shareable Room Code is generated for this session.
           </CardDescription>
         </CardHeader>
 
@@ -104,11 +126,53 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
               </div>
             )}
 
+            {/* Room Code Banner */}
+            <div className="p-4 rounded-xl border bg-primary/5 border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <Label className="text-xs uppercase font-extrabold tracking-wider text-primary flex items-center gap-1.5">
+                  <Link2 className="w-3.5 h-3.5" /> Generated Room Code
+                </Label>
+                <div className="font-mono text-lg font-bold mt-0.5 tracking-wider text-foreground">
+                  {roomCode}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleRegenerateCode}
+                  className="h-8 text-xs"
+                  title="Generate another code"
+                >
+                  <RotateCcw className="w-3.5 h-3.5 mr-1" /> Re-roll
+                </Button>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="sm"
+                  onClick={handleCopyInviteLink}
+                  className="h-8 text-xs font-semibold"
+                >
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 mr-1 text-green-500" /> Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5 mr-1" /> Copy Share Link
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* User 1 */}
               <div className="space-y-3 p-4 rounded-xl border bg-muted/20">
                 <h3 className="font-semibold text-sm tracking-wide uppercase text-muted-foreground">
-                  User 1
+                  Host / User 1
                 </h3>
                 <div>
                   <Label htmlFor="u1-name">Full Name *</Label>
@@ -143,7 +207,7 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
               {/* User 2 */}
               <div className="space-y-3 p-4 rounded-xl border bg-muted/20">
                 <h3 className="font-semibold text-sm tracking-wide uppercase text-muted-foreground">
-                  User 2
+                  Peer / User 2
                 </h3>
                 <div>
                   <Label htmlFor="u2-name">Full Name *</Label>
@@ -183,7 +247,9 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
                 id="summary-points"
                 rows={4}
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                placeholder={"Alex explained Next.js App Router structure&#10;Jordan shared insights on fine-tuning models&#10;Both planned to build an interactive prototype"}
+                placeholder={
+                  "Discuss Next.js App Router and Server Components\nReview architecture diagrams on whiteboard\nAgree on sprint milestone"
+                }
                 value={points}
                 onChange={(e) => setPoints(e.target.value)}
                 required
@@ -199,7 +265,7 @@ export const CreateMeetingModal: React.FC<CreateMeetingModalProps> = ({
                 Cancel
               </Button>
               <Button type="submit">
-                Add to Dashboard
+                Save & Add to Dashboard
               </Button>
             </div>
           </form>
