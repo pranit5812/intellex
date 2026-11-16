@@ -109,6 +109,7 @@ function BattleArenaContent() {
 
   // Proctor state
   const videoRef = useRef<HTMLVideoElement>(null);
+  const mediaStreamRef = useRef<MediaStream | null>(null);
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [strikes, setStrikes] = useState(0);
@@ -159,7 +160,7 @@ function BattleArenaContent() {
     }
   }, [searchParams]);
 
-  // 2. Camera Proctoring
+  // 2. Camera Proctoring (Hardware controls)
   const startCamera = async () => {
     try {
       setCameraError(null);
@@ -167,9 +168,10 @@ function BattleArenaContent() {
         video: { width: 320, height: 240 },
         audio: false,
       });
+      mediaStreamRef.current = stream;
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        videoRef.current.play();
+        videoRef.current.play().catch(() => {});
       }
       setCameraActive(true);
     } catch (err: any) {
@@ -179,20 +181,45 @@ function BattleArenaContent() {
   };
 
   const stopCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
-      stream.getTracks().forEach((track) => track.stop());
-      videoRef.current.srcObject = null;
+    // 1. Stop all tracks on the stream ref directly
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach((track) => {
+        track.enabled = false;
+        track.stop();
+      });
+      mediaStreamRef.current = null;
     }
+
+    // 2. Stop and clear the video element
+    if (videoRef.current) {
+      if (videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream;
+        stream.getTracks().forEach((track) => {
+          track.enabled = false;
+          track.stop();
+        });
+        videoRef.current.srcObject = null;
+      }
+      videoRef.current.pause();
+    }
+
     setCameraActive(false);
   };
 
+  // Start camera on mount, stop when unmounting
   useEffect(() => {
     startCamera();
     return () => {
       stopCamera();
     };
   }, []);
+
+  // When battle ends (won or forfeit), turn camera hardware OFF immediately
+  useEffect(() => {
+    if (battleState === "won" || battleState === "forfeit") {
+      stopCamera();
+    }
+  }, [battleState]);
 
   // 3. Anti-Cheat: Screen / Tab Switching Detection
   useEffect(() => {
@@ -369,7 +396,8 @@ Test 3 ("Was it a car or a cat I saw?"): ${pass3 ? "PASS" : "FAIL"}`);
   // 10. Check If Entire Battle Is Completed
   const checkOverallCompletion = (dPassed: boolean, mPassed: boolean, aPassed: boolean) => {
     if (dPassed && mPassed && aPassed) {
-      // The battle is WON!
+      // The battle is WON! Immediately power down camera hardware
+      stopCamera();
       setBattleState("won");
       const newPoints = battlePoints + 1;
       setBattlePoints(newPoints);
@@ -378,6 +406,7 @@ Test 3 ("Was it a car or a cat I saw?"): ${pass3 ? "PASS" : "FAIL"}`);
   };
 
   const handleStartBattle = () => {
+    startCamera();
     setBattleState("in_battle");
     setElapsedMs(0);
     setStrikes(0);
@@ -543,10 +572,12 @@ Test 3 ("Was it a car or a cat I saw?"): ${pass3 ? "PASS" : "FAIL"}`);
           <Card className="overflow-hidden border border-border shadow-sm">
             <CardHeader className="p-3 bg-muted/40 border-b flex flex-row items-center justify-between">
               <span className="text-xs font-bold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span className={`w-2 h-2 rounded-full ${cameraActive ? "bg-emerald-500 animate-pulse" : "bg-zinc-600"}`}></span>
                 You (Challenger)
               </span>
-              <span className="text-[10px] text-muted-foreground font-mono">Camera ON</span>
+              <span className="text-[10px] text-muted-foreground font-mono">
+                {cameraActive ? "Camera ON" : "Camera OFF (Battle Done)"}
+              </span>
             </CardHeader>
             <div className="relative bg-black h-36 flex items-center justify-center overflow-hidden">
               <video
