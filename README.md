@@ -42,7 +42,7 @@
 
 ### 2. 💻 Live Collaborative Workspace (`/session`)
 - **🎨 Interactive Shared Whiteboard**: Full HTML5 canvas supporting color palettes, brush thickness, eraser, and PNG export for sketching system architectures and math.
-- **⚡ Collaborative Code Playground**: Multi-language code editor (JavaScript/TypeScript, Python, Solidity) with starter templates, live scratchpad, and one-click code copy.
+- **⚡ Interactive IDLE Code Playground & Terminal**: Multi-language code editor (JavaScript/TypeScript, Python 3, Solidity) with built-in **"Run Code"** engine, keyboard shortcut (`Ctrl + Enter`), live IDLE output console, runtime error tracebacks, execution duration stats, and interactive `>>>` REPL prompt.
 - **📝 Real-time Session Notes & Exporter**: Built-in Pomodoro/meeting timer and session notes pad with one-click **"Save Session to Dashboard"**.
 - **📹 Live Audio/Video & 100ms Hub**: Integrated camera/mic preview, screen-sharing, and 100ms room connector.
 
