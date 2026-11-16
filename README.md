@@ -52,10 +52,12 @@
 - **Custom Participant & Meeting Creator**: Add custom user pairs, roles, and discussion summaries with live cloud and local persistence.
 - **Direct Workspace Launch**: Open any session directly in the collaborative workspace.
 
-### 4. 🏆 Leaderboard & Web3 NFT Claim (`/leaderboard`)
-- Dynamically calculated leaderboard ranking top learners and mentors by completed sessions.
-- Interactive **Intellex Gold Award NFT** preview with soulbound certificate details.
-- Direct wallet address input (`0x...`) with Verbwire on-chain minting on Polygon/Mumbai and Polygonscan block explorer receipts.
+### 4. 🏆 Peer Arena, Leaderboard & 1v1 Skill Duels (`/leaderboard`)
+- **⚔️ 1-on-1 Peer Challenge & Skill Duels**: Direct "Challenge" button on every peer row with custom battle modes (15-Min Speed Coding, Algorithm Duel, UI Sprint, and Co-Focus Pomodoro) and auto-generated duel room codes.
+- **💎 Weekly League Divisions & Promotion Zones**: Diamond League Division 1 with live season countdown and promotion indicators for the top 3 learners.
+- **💥 Head-to-Head Rival Showdown**: Interactive 1v1 stat comparison widget comparing sessions, study hours, streaks, and XP against any selected rival.
+- **🎖️ 1-Click Digital Certificate & Award Claim**: Zero wallet setup required! Instant verifiable certificate generation with unique credential IDs and direct profile saving.
+- **⚡ Live Community Duels Feed**: Open peer battles waiting for an opponent to accept and launch.
 
 ### 5. 📅 Interactive Study Calendar (`/calendar`)
 - Monthly interactive calendar grid to schedule study sessions, meetups, and track assignment deadlines.

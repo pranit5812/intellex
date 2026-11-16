@@ -71,18 +71,22 @@ function getBotReply(userPrompt: string): string {
   if (
     query.includes("leaderboard") ||
     query.includes("rank") ||
-    query.includes("score")
+    query.includes("score") ||
+    query.includes("duel") ||
+    query.includes("compete") ||
+    query.includes("challenge")
   ) {
-    return "The Leaderboard (/leaderboard) ranks members by completed study sessions. Maintain your study streak and complete sessions to unlock Gold 🥇, Silver 🥈, and Bronze 🥉 ranks!";
+    return "The Leaderboard (/leaderboard) features live weekly peer rankings, 1v1 Peer Duels, and League Divisions! You can click 'Challenge' on any peer to launch a 15-min speed coding duel, algorithm battle, or UI race in a private room. ⚔️";
   }
 
   if (
-    query.includes("nft") ||
     query.includes("badge") ||
+    query.includes("award") ||
     query.includes("reward") ||
-    query.includes("claim")
+    query.includes("claim") ||
+    query.includes("certificate")
   ) {
-    return "Top performers on the Leaderboard qualify for verifiable Web3 achievement badges minted through Verbwire! Go to /leaderboard, enter your Polygon/Ethereum wallet address, and claim your badge. 🏆";
+    return "Top performers unlock the prestigious Intellex Gold Award and verifiable digital certificates! Head to /leaderboard and click 'Claim Award & Certificate' to unlock your distinction and credentials directly to your profile with zero wallet hassle. 🏆";
   }
 
   if (
