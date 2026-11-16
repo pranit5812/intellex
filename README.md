@@ -59,22 +59,31 @@
 - **🎖️ 1-Click Digital Certificate & Award Claim**: Zero wallet setup required! Instant verifiable certificate generation with unique credential IDs and direct profile saving.
 - **⚡ Live Community Duels Feed**: Open peer battles waiting for an opponent to accept and launch.
 
-### 5. 📅 Interactive Study Calendar (`/calendar`)
+### 5. ⚔️ Live 1v1 Battle Arena & Proctoring (`/battle`)
+- **Standardized Competitive Rounds**: Both contenders receive the exact same challenges:
+  1. 🐞 **Code Debugging Challenge**: Live buggy code provided by the system with automated unit test validation.
+  2. 🧠 **Rapid-Fire Technical MCQs**: Curated timed computer science & web development questions.
+  3. ⚡ **Speed Algorithm Sprint**: Live algorithmic problem solving with automated test suites.
+- **🎥 Mandatory Camera Proctoring**: Real-time webcam HUD ensuring contenders remain active and visible.
+- **🛡️ Anti-Cheat Screen Lock**: Automatic detection of tab switching or window defocusing with strike penalties.
+- **⏱️ Live Stopwatch & Instant Win Termination**: As soon as a contender solves and passes all test cases, the battle concludes instantly, records completion time, and awards **+1 Win Point**.
+
+### 6. 📅 Interactive Study Calendar (`/calendar`)
 - Monthly interactive calendar grid to schedule study sessions, meetups, and track assignment deadlines.
 - Color-coded categories: **Study** (Blue), **Meeting** (Violet), **Deadline** (Red), and **Other** (Amber).
 - Sidebar with upcoming 7-day schedule view, quick category counters, and modal event creator.
 - Local persistence with instant view & delete options.
 
-### 6. 📚 Curated Courses & Learning Roadmaps (`/courses`)
+### 7. 📚 Curated Courses & Learning Roadmaps (`/courses`)
 - Structured step-by-step roadmaps across 6 high-demand domains: **Web Development, AI/ML, Blockchain & Web3, UI/UX Design, DevOps & Cloud, and Data Science**.
 - Curated direct links to the best free learning resources (MDN, freeCodeCamp, fast.ai, Coursera, Kaggle, CryptoZombies, etc.).
 - Interactive checklist to track milestone completion with animated category progress bars.
 
-### 7. 🤖 Intellex AI Assistant Chatbot (Global Widget)
+### 8. 🤖 Intellex AI Assistant Chatbot (Global Widget)
 - Floating AI assistant available on every page to answer user questions, explain platform features, and suggest roadmaps.
 - Quick FAQ prompts for instant answers on room codes, peer matching, whiteboard features, and NFT badge claiming.
 
-### 8. 🌐 Global Modern Navigation, Animated Background & Auth Guard
+### 9. 🌐 Global Modern Navigation, Animated Background & Auth Guard
 - Unified responsive navigation bar with active route indicators, mobile drawer, and smooth theme switching.
 - Adaptive animated background tailored differently for both Light and Dark modes.
 - Route protection via `<AuthGuard>` ensuring secure user access across all platform modules.

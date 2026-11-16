@@ -18,6 +18,7 @@ import {
   Trophy,
   CalendarDays,
   GraduationCap,
+  Swords,
   PlusCircle,
   Menu,
   X,
@@ -45,6 +46,7 @@ const Navbar = () => {
     { name: "Courses", href: "/courses", icon: GraduationCap },
     { name: "Find Peers", href: "/match", icon: Users },
     { name: "Live Session", href: "/session", icon: Video },
+    { name: "Battle Arena", href: "/battle", icon: Swords },
     { name: "Leaderboard", href: "/leaderboard", icon: Trophy },
   ];
 

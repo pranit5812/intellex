@@ -266,13 +266,13 @@ export default function LeaderboardPage() {
       ...prev,
     ]);
 
-    // Navigate to session with duel room code
-    router.push(`/session?room=${duelRoomCode}`);
+    // Navigate to battle arena with duel room code
+    router.push(`/battle?room=${duelRoomCode}`);
   };
 
   const handleCopyDuelLink = () => {
     const origin = typeof window !== "undefined" ? window.location.origin : "";
-    navigator.clipboard.writeText(`${origin}/session?room=${duelRoomCode}`);
+    navigator.clipboard.writeText(`${origin}/battle?room=${duelRoomCode}`);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);
   };
@@ -342,9 +342,9 @@ export default function LeaderboardPage() {
                 Dashboard
               </Button>
             </Link>
-            <Link href="/session">
+            <Link href="/battle">
               <Button size="sm" className="bg-primary flex items-center gap-1.5 font-bold">
-                <Zap className="w-4 h-4" /> Enter Arena
+                <Swords className="w-4 h-4" /> Enter Arena
               </Button>
             </Link>
           </div>
@@ -518,7 +518,7 @@ export default function LeaderboardPage() {
                       </p>
                     </div>
 
-                    <Link href={`/session?room=${duel.roomCode}`}>
+                    <Link href={`/battle?room=${duel.roomCode}`}>
                       <Button size="sm" className="h-8 text-xs font-bold bg-primary flex items-center gap-1">
                         Accept Battle <ArrowUpRight className="w-3.5 h-3.5" />
                       </Button>
