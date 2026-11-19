@@ -1,25 +1,26 @@
-# 🚀 Intellex — Decentralized P2P Skill Sharing Platform
+# 🚀 Intellex — Decentralized P2P Skill-Sharing & Competitive Learning Platform
 
 <div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-14.0.4-black?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-10.7-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+[![Next.js](https://img.shields.io/badge/Next.js-14.0.4-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-10.7-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](LICENSE)
 
 <p align="center">
-  <strong>Connect. Teach. Learn. Collaborate Live. Earn on-chain rewards.</strong>
+  <strong>Exchange Skills 1-on-1 • Live Whiteboard & IDLE Code Runner • Proctored 1v1 Skill Battles • Curated Roadmaps • Verifiable Digital Credentials</strong>
 </p>
 
 <p align="center">
-  <a href="#-key-features">Key Features</a> •
+  <a href="#-overview">Overview</a> •
+  <a href="#-platform-architecture">Architecture</a> •
+  <a href="#-core-modules--features">Features</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-getting-started">Getting Started</a> •
-  <a href="#-environment-setup">Environment Setup</a> •
   <a href="#-project-structure">Project Structure</a> •
-  <a href="#-author">Author</a>
+  <a href="#-author--repository">Author</a>
 </p>
 
 </div>
@@ -28,89 +29,165 @@
 
 ## 📖 Overview
 
-**Intellex** is an interactive, decentralized peer-to-peer (P2P) skill-sharing and mentorship platform. Instead of one-way passive tutorials, Intellex facilitates hands-on 1-on-1 collaborative sessions where peers teach each other in real time, review takeaways on an interactive dashboard, and earn verifiable Web3 NFT credentials.
+**Intellex** is an interactive, peer-to-peer (P2P) collaborative study and skill-exchange ecosystem. Instead of one-way passive video tutorials, Intellex facilitates real-time 1-on-1 interactive sessions where learners teach and learn from each other, compete in proctored live skill battles, follow curated milestone roadmaps, schedule study sprints on an interactive calendar, and earn verifiable achievement credentials.
 
 ---
 
-## ✨ Key Features
+## 🏗️ Platform Architecture
 
-### 1. 👥 Smart Peer Skill Matcher (`/match`)
-- Find mentors and peer learners who can teach you the skills you need in exchange for what you know.
-- Filter by skill categories (Machine Learning, Next.js, Solidity, TypeScript, Figma, Rust).
-- One-click **"Instant Match & Connect"** that automatically schedules a collaboration session.
-- Add your own custom peer profiles directly from the app.
+```text
+                                  ┌─────────────────────────────┐
+                                  │      Intellex Landing       │
+                                  │     (Adaptive Themes)       │
+                                  └──────────────┬──────────────┘
+                                                 │
+                                     [ Google Authentication ]
+                                                 ▼
+                  ┌─────────────────────────────────────────────────────────────┐
+                  │                 Protected Platform Dashboard                │
+                  └──────┬───────────────────────┬───────────────────────┬──────┘
+                         │                       │                       │
+                         ▼                       ▼                       ▼
+            ┌────────────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+            │   Peer Match (/match)  │  │ Calendar & Tasks │  │ Courses & Tracks │
+            │ Filter by ML, Web3, JS │  │  (/calendar)     │  │  (/courses)      │
+            └────────────┬───────────┘  └──────────────────┘  └──────────────────┘
+                         │
+                         ├────────────────────────────────────────┐
+                         ▼                                        ▼
+      ┌────────────────────────────────────┐   ┌────────────────────────────────────┐
+      │   Live Session Space (/session)    │   │     1v1 Battle Arena (/battle)     │
+      ├────────────────────────────────────┤   ├────────────────────────────────────┤
+      │ • HTML5 Collaborative Whiteboard   │   │ • Automated Debugging Challenges   │
+      │ • IDLE Code Playground (JS/Py/Sol) │   │ • Rapid-Fire Technical MCQs        │
+      │ • Instant Execution & Output REPL  │   │ • Speed Palindrome / Algo Sprint   │
+      │ • Hardware Camera & Screen Share   │   │ • WebRTC Camera Proctoring         │
+      │ • Pomodoro Timer & Notes Exporter  │   │ • Anti-Cheat Window / Tab Lock     │
+      └──────────────────┬─────────────────┘   │ • Instant Win & Battle Points (+1) │
+                         │                     └──────────────────┬─────────────────┘
+                         └───────────────────┬────────────────────┘
+                                             ▼
+                               ┌───────────────────────────┐
+                               │ Leaderboard & League Rank │
+                               │ 1-Click Distinction Certs │
+                               │      (/leaderboard)       │
+                               └───────────────────────────┘
+```
+
+---
+
+## ✨ Core Modules & Features
+
+### 1. ⚔️ Live 1v1 Skill Battle Arena (`/battle`)
+A competitive, proctored test environment where two learners duel in real time with synchronized challenges:
+- **Identical Standardized Testing**: Both contenders solve the exact same rounds:
+  1. 🐞 **Code Debugging Challenge**: System provides live buggy functions (`findUniqueNumbers` with state and comparison bugs). Learners debug and execute against automated unit tests.
+  2. 🧠 **Rapid-Fire Technical MCQs**: Multi-topic timed quiz (JavaScript type coercion, BST algorithmic time complexity, React memoization hooks).
+  3. ⚡ **Speed Algorithm Sprint**: Live algorithmic problem solving (`isPalindromeValid` with casing/punctuation sanitization) validated with test suites.
+- **🎥 Mandatory Camera Proctoring**: Real-time webcam HUD (`getUserMedia`). If the camera is disabled or blocked, a proctor barrier pauses progress.
+- **🔌 Automatic Camera Power-Down**: Once the battle round concludes or is won, physical camera hardware tracks are terminated immediately (`track.stop()`) so camera LEDs do not remain on.
+- **🛡️ Anti-Cheat Screen Lock**: Continuous background monitoring (`document.visibilitychange` & `window.blur`). Tab or window switches trigger warning modals and increment strike counters.
+- **⏱️ Precision Stopwatch & Instant Win**: The first contender to solve and pass all 3 tests instantly triggers victory. Time is recorded to the millisecond (`mm:ss.s`), awarding **+1 Battle Win Point** to the victor.
+
+---
 
 ### 2. 💻 Live Collaborative Workspace (`/session`)
-- **🎨 Interactive Shared Whiteboard**: Full HTML5 canvas supporting color palettes, brush thickness, eraser, and PNG export for sketching system architectures and math.
-- **⚡ Interactive IDLE Code Playground & Terminal**: Multi-language code editor (JavaScript/TypeScript, Python 3, Solidity) with built-in **"Run Code"** engine, keyboard shortcut (`Ctrl + Enter`), live IDLE output console, runtime error tracebacks, execution duration stats, and interactive `>>>` REPL prompt.
-- **📝 Real-time Session Notes & Exporter**: Built-in Pomodoro/meeting timer and session notes pad with one-click **"Save Session to Dashboard"**.
-- **📹 Live Audio/Video & 100ms Hub**: Integrated camera/mic preview, screen-sharing, and 100ms room connector.
+A multi-purpose digital study room for 1-on-1 peer learning:
+- **🎨 Interactive Shared Whiteboard**: HTML5 canvas supporting customizable color palettes, adjustable brush thickness, eraser mode, clear canvas, and one-click PNG diagram export.
+- **⚡ In-Browser IDLE Code Playground & Terminal**:
+  - Multi-language support: **JavaScript / TypeScript**, **Python 3 (Client-side IDLE)**, and **Solidity (Web3)**.
+  - **Run Code** engine with shortcut (<kbd>Ctrl</kbd> + <kbd>Enter</kbd>).
+  - Clean indentation handler (<kbd>Tab</kbd> inserts 2 spaces without losing editor focus).
+  - IDLE-style interactive terminal output shell with distinct colored streams (`stdout`, `stderr`, `system`, and return values).
+  - Interactive `>>>` REPL prompt to test single-line expressions on the fly.
+  - Simulated Solidity EVM compilation with bytecode estimation, gas calculation, and mock contract deployment.
+- **📝 Real-time Session Notes & Exporter**: Integrated Pomodoro timer and meeting scratchpad with one-click **"Save Session to Dashboard"**.
+- **📹 Hardware-Safe Audio/Video**: Native WebRTC webcam toggle, microphone controls, and screen-sharing with guaranteed track cleanup on disconnect.
 
-### 3. 🎯 Collaboration Dashboard (`/dashboard`)
-- **Interactive Metric Cards**: Total sessions, active peers, knowledge exchange hours, and reward tiers.
-- **Search & Filter**: Find sessions instantly by participant name or discussion topics.
-- **Custom Participant & Meeting Creator**: Add custom user pairs, roles, and discussion summaries with live cloud and local persistence.
-- **Direct Workspace Launch**: Open any session directly in the collaborative workspace.
+---
 
-### 4. 🏆 Peer Arena, Leaderboard & 1v1 Skill Duels (`/leaderboard`)
-- **⚔️ 1-on-1 Peer Challenge & Skill Duels**: Direct "Challenge" button on every peer row with custom battle modes (15-Min Speed Coding, Algorithm Duel, UI Sprint, and Co-Focus Pomodoro) and auto-generated duel room codes.
-- **💎 Weekly League Divisions & Promotion Zones**: Diamond League Division 1 with live season countdown and promotion indicators for the top 3 learners.
-- **💥 Head-to-Head Rival Showdown**: Interactive 1v1 stat comparison widget comparing sessions, study hours, streaks, and XP against any selected rival.
-- **🎖️ 1-Click Digital Certificate & Award Claim**: Zero wallet setup required! Instant verifiable certificate generation with unique credential IDs and direct profile saving.
-- **⚡ Live Community Duels Feed**: Open peer battles waiting for an opponent to accept and launch.
+### 3. 👥 Smart Peer Skill Matcher (`/match`)
+- Find mentors and study partners filtered by domains: **Machine Learning**, **Next.js**, **Solidity**, **TypeScript**, **UI/UX (Figma)**, and **Rust**.
+- One-click **"Instant Match & Connect"** that auto-generates a unique room code (`INTX-XXXX-XXXX`) and schedules a study session.
+- Add and persist custom peer profiles directly within the platform.
 
-### 5. ⚔️ Live 1v1 Battle Arena & Proctoring (`/battle`)
-- **Standardized Competitive Rounds**: Both contenders receive the exact same challenges:
-  1. 🐞 **Code Debugging Challenge**: Live buggy code provided by the system with automated unit test validation.
-  2. 🧠 **Rapid-Fire Technical MCQs**: Curated timed computer science & web development questions.
-  3. ⚡ **Speed Algorithm Sprint**: Live algorithmic problem solving with automated test suites.
-- **🎥 Mandatory Camera Proctoring**: Real-time webcam HUD ensuring contenders remain active and visible.
-- **🛡️ Anti-Cheat Screen Lock**: Automatic detection of tab switching or window defocusing with strike penalties.
-- **⏱️ Live Stopwatch & Instant Win Termination**: As soon as a contender solves and passes all test cases, the battle concludes instantly, records completion time, and awards **+1 Win Point**.
+---
 
-### 6. 📅 Interactive Study Calendar (`/calendar`)
-- Monthly interactive calendar grid to schedule study sessions, meetups, and track assignment deadlines.
-- Color-coded categories: **Study** (Blue), **Meeting** (Violet), **Deadline** (Red), and **Other** (Amber).
-- Sidebar with upcoming 7-day schedule view, quick category counters, and modal event creator.
-- Local persistence with instant view & delete options.
+### 4. 🏆 Leaderboard, League Divisions & Digital Credentials (`/leaderboard`)
+- **💎 Weekly League System**: Diamond League Division 1 with promotion indicators for the top 3 learners and live season countdown timers.
+- **⚔️ Peer Challenge System**: Interactive **"Challenge"** button beside every learner on the leaderboard with customized battle stakes (+150 XP, +200 XP).
+- **💥 1v1 Head-to-Head Showdown Widget**: Real-time stats comparison radar comparing completed sessions, study hours, active streaks (🔥), and XP against any selected rival.
+- **🎖️ Zero-Wallet 1-Click Achievement Awards**: No crypto wallet or gas fee barrier! Instant verifiable certificate generation with unique credential IDs (`INTX-CERT-XXXXXX`) that save directly to the learner's profile.
 
-### 7. 📚 Curated Courses & Learning Roadmaps (`/courses`)
-- Structured step-by-step roadmaps across 6 high-demand domains: **Web Development, AI/ML, Blockchain & Web3, UI/UX Design, DevOps & Cloud, and Data Science**.
-- Curated direct links to the best free learning resources (MDN, freeCodeCamp, fast.ai, Coursera, Kaggle, CryptoZombies, etc.).
-- Interactive checklist to track milestone completion with animated category progress bars.
+---
 
-### 8. 🤖 Intellex AI Assistant Chatbot (Global Widget)
-- Floating AI assistant available on every page to answer user questions, explain platform features, and suggest roadmaps.
-- Quick FAQ prompts for instant answers on room codes, peer matching, whiteboard features, and NFT badge claiming.
+### 5. 📅 Interactive Study Calendar (`/calendar`)
+- Monthly visual calendar grid with previous/next month navigation and a **"Today"** quick return button.
+- Color-coded event tagging:
+  - 🔵 **Study Sessions**
+  - 🟣 **Peer Meetings**
+  - 🔴 **Project Deadlines**
+  - 🟡 **Other Milestones**
+- Click any date to add events with custom times, titles, categories, and descriptions.
+- **Upcoming 7-Day Sidebar**: Real-time list of events scheduled over the next week with category metric counters.
+- Local persistence via `intellex_calendar_events`.
 
-### 9. 🌐 Global Modern Navigation, Animated Background & Auth Guard
-- Unified responsive navigation bar with active route indicators, mobile drawer, and smooth theme switching.
-- Adaptive animated background tailored differently for both Light and Dark modes.
-- Route protection via `<AuthGuard>` ensuring secure user access across all platform modules.
+---
+
+### 6. 📚 Curated Learning Roadmaps (`/courses`)
+- Structured, milestone-based learning tracks across 6 high-demand disciplines:
+  1. **Web Development** (HTML/CSS, JavaScript, React, Next.js)
+  2. **AI & Machine Learning** (Python, ML Foundations, Deep Learning, NLP & LLMs)
+  3. **Blockchain & Web3** (Blockchain Basics, Solidity, DApps, DeFi & NFTs)
+  4. **UI/UX Design** (Design Systems, Figma Mastery, Prototyping, Usability Testing)
+  5. **DevOps & Cloud** (Git/GitHub, Docker, Kubernetes, CI/CD, AWS)
+  6. **Data Science** (Statistics, Pandas, Data Visualization, SQL)
+- Direct links to top free educational resources (MDN, freeCodeCamp, fast.ai, Coursera, Kaggle, CryptoZombies, etc.).
+- Interactive checklist saving your completion progress with dynamic animated percentage progress bars.
+
+---
+
+### 7. 🤖 Intellex AI Assistant Chatbot (Global Widget)
+- Floating assistant available on every page to guide learners through platform capabilities.
+- Intelligent intent engine answering queries regarding meeting creation, room codes, peer matching, IDLE code execution, roadmaps, and battle rules.
+- Quick FAQ suggestion pills, typing animation, and unread notification badge.
+
+---
+
+### 8. 🎯 Collaboration Dashboard (`/dashboard`)
+- Real-time metric cards: Total Sessions, Active Peers, Learning Hours, and Reward Tiers.
+- Search and filter collaboration summaries by participant name or discussion keywords.
+- Dedicated meeting creator modal and full-page session scheduler.
+
+---
+
+### 9. 🎨 Adaptive Animated Background & Theme Engine
+- Custom animated background built with GPU-accelerated CSS keyframe floating orbs and blueprint grid textures.
+- Automatically adjusts color palettes and glow intensities for both **Light** (warm paper & pastel gradients) and **Dark** (deep obsidian & cyan/violet auroras) modes.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Domain | Technologies |
+| Layer | Technologies |
 | :--- | :--- |
-| **Frontend Framework** | [Next.js 14](https://nextjs.org/) (App Router), [React 18](https://react.dev/) |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) |
-| **Styling & Components** | [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), [Framer Motion](https://www.framer.com/motion/), [Lucide React](https://lucide.dev/) |
-| **Backend & Cloud Database** | [Firebase Authentication](https://firebase.google.com/products/auth), [Cloud Firestore](https://firebase.google.com/products/firestore) |
-| **Web3 & Blockchain** | [Verbwire API](https://www.verbwire.com/) (ERC-721 NFT Minting on Polygon) |
-| **Live Collaboration** | HTML5 Canvas, WebRTC Media Streams, 100ms Live |
+| **Framework** | [Next.js 14](https://nextjs.org/) (App Router, Server & Client Components) |
+| **UI Library** | [React 18](https://react.dev/), [TypeScript 5](https://www.typescriptlang.org/) |
+| **Styling** | [Tailwind CSS 3.3](https://tailwindcss.com/), [Tailwind Animate](https://github.com/jamiebuilds/tailwindcss-animate) |
+| **Components & Icons** | [Radix UI Primitives](https://www.radix-ui.com/), [Lucide React](https://lucide.dev/), [React Icons](https://react-icons.github.io/react-icons/) |
+| **Animations** | [Framer Motion](https://www.framer.com/motion/) |
+| **Auth & Cloud DB** | [Firebase 10](https://firebase.google.com/) (Google Authentication, Cloud Firestore) |
+| **Media & Live Feeds** | HTML5 Canvas, WebRTC `navigator.mediaDevices` |
+| **Client Code Runner** | Custom In-Browser JavaScript/Python Transpiler & Output Console |
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these steps to set up and run the project locally.
-
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18.x or higher)
-- [npm](https://www.npmjs.com/)
+- [Node.js](https://nodejs.org/) (v18.17.0 or higher recommended)
+- [npm](https://www.npmjs.com/) (v9.x or higher)
 
 ### 1. Clone the Repository
 
@@ -124,31 +201,27 @@ cd intellex
 ```bash
 npm install
 ```
-*(If you encounter peer dependency warnings, run: `npm install --legacy-peer-deps`)*
+> *Note: If peer dependency warnings arise due to nested packages, run `npm install --legacy-peer-deps`.*
 
 ### 3. Configure Environment Variables
 
-Create `.env.local` in the project root:
+Create a `.env.local` file in the root directory:
 
 ```ini
-# Firebase Configuration
+# Firebase Client Configuration
 NEXT_PUBLIC_API_KEY=your_firebase_api_key
 NEXT_PUBLIC_AUTH_DOMAIN=your_project.firebaseapp.com
 NEXT_PUBLIC_PROJECT_ID=your_project_id
 NEXT_PUBLIC_STORAGE_BUCKET=your_project.firebasestorage.app
 NEXT_PUBLIC_MESSAGING_SENDER_ID=your_messaging_sender_id
 NEXT_PUBLIC_APP_ID=your_app_id
-
-# Verbwire API Configuration (For NFT minting)
-VERBWIRE_API_KEY=your_verbwire_api_key
-CONTRACT_ADDRESS=your_contract_address
-CHAIN=mumbai
 ```
 
-### 4. Configure Firebase Services
+### 4. Configure Firebase Authentication
 
-1. **Authentication**: Go to Firebase Console $\rightarrow$ **Authentication** $\rightarrow$ **Sign-in method** and enable **Google**.
-2. **Firestore Database**: Create a Firestore Database with test/authenticated read and write permissions:
+1. In the [Firebase Console](https://console.firebase.google.com/), navigate to **Authentication** $\rightarrow$ **Sign-in method**.
+2. Enable **Google** as a sign-in provider.
+3. In **Firestore Database**, configure rules for authenticated read/write access:
    ```javascript
    rules_version = '2';
    service cloud.firestore {
@@ -160,13 +233,13 @@ CHAIN=mumbai
    }
    ```
 
-### 5. Run the Development Server
+### 5. Start the Development Server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [`http://localhost:3000`](http://localhost:3000) in your browser to experience Intellex.
 
 ---
 
@@ -175,39 +248,64 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ```text
 intellex/
 ├── app/
-│   ├── api/verbwire/         # Verbwire NFT minting API route
-│   ├── dashboard/            # Collaboration dashboard with stats & search
-│   │   ├── create/           # Dedicated meeting creator page
-│   │   └── page.tsx          # Main dashboard feed
-│   ├── form/                 # Onboarding skill survey
-│   ├── leaderboard/          # Rankings & Web3 NFT claim showcase
-│   ├── match/                # Smart peer skill matching directory
-│   ├── session/              # Live collaborative workspace (Whiteboard, Code, Notes)
-│   ├── globals.css           # Global Tailwind stylesheet
-│   ├── layout.tsx            # Root layout with unified navbar & theme
-│   └── page.tsx              # Enhanced landing page
+│   ├── battle/               # 1v1 Skill Battle Arena (Debugging, MCQs, Proctoring)
+│   │   └── page.tsx
+│   ├── calendar/             # Interactive Monthly Study Calendar & Upcoming Sidebar
+│   │   └── page.tsx
+│   ├── courses/              # 6 Curated Learning Tracks with Progress Checklists
+│   │   └── page.tsx
+│   ├── dashboard/            # Collaboration Dashboard & Metric Cards
+│   │   ├── create/           # Full-page Meeting & Room Code Creator
+│   │   └── page.tsx
+│   ├── form/                 # Onboarding Skill Survey
+│   │   └── page.tsx
+│   ├── leaderboard/          # Peer Arena, League Rankings & 1-Click Certificates
+│   │   └── page.tsx
+│   ├── match/                # Smart Peer Skill Matcher Directory
+│   │   └── page.tsx
+│   ├── session/              # Live Workspace (Whiteboard, IDLE Code Runner, Notes)
+│   │   └── page.tsx
+│   ├── globals.css           # Global Tailwind Theme & Keyframe Animations
+│   ├── layout.tsx            # Root Layout (Theme, Auth, Background, Chatbot)
+│   └── page.tsx              # Landing Page with Hero & Feature Grid
 ├── components/
+│   ├── animated-background.tsx # Adaptive Light/Dark Theme Background Orbs
+│   ├── auth-guard.tsx        # Route Protection Lock Screen
+│   ├── auth-provider.tsx     # Global Firebase Auth State Context
+│   ├── chatbot.tsx           # Floating AI Platform Assistant Widget
 │   ├── component/
-│   │   ├── create-meeting-modal.tsx  # In-dashboard meeting creator modal
-│   │   ├── navbar.tsx                # Unified responsive navigation header
-│   │   └── summary/summary.tsx       # Meeting collaboration cards with copy & launch
-│   └── ui/                   # Reusable UI primitives (Button, Card, Avatar, etc.)
+│   │   ├── create-meeting-modal.tsx  # In-Dashboard Meeting Creator Modal
+│   │   ├── mode-toggle.tsx           # Light/Dark Theme Switcher
+│   │   ├── navbar.tsx                # Responsive Header with Navigation Drawer
+│   │   └── summary/summary.tsx       # Meeting Cards with Join & Share Links
+│   └── ui/                   # Radix Primitives (Button, Card, Avatar, Table, Input, etc.)
 ├── lib/
-│   ├── firebase.ts           # Firebase SDK initialization & auth helpers
-│   ├── meetings.ts           # Persistent meeting engine (Firestore + LocalStorage)
-│   └── questions.ts          # Onboarding survey questions
-├── public/                   # Static assets & badge images
-├── .env.local                # Local environment secrets (git-ignored)
-├── package.json              # Project dependencies and scripts
-└── tsconfig.json             # TypeScript configuration
+│   ├── firebase.ts           # Firebase SDK Initialization & Google Sign-In
+│   ├── get-user-data.ts      # Firestore User Profile Fetcher
+│   ├── meetings.ts           # Persistent Meeting Engine (Firestore + LocalStorage)
+│   ├── questions.ts          # Onboarding Survey Configuration
+│   └── sign-in-or-create.ts  # Google Auth Sign-In / User Profile Provisioning
+├── public/                   # Static Brand Assets, Icons & Gold Badge Image
+├── .env.local                # Local Environment Variables (Git-Ignored)
+├── package.json              # Dependencies, Scripts & Metadata
+├── tailwind.config.ts        # Tailwind CSS Configuration & Tokens
+└── tsconfig.json             # TypeScript Compiler Options
 ```
+
+---
+
+## 🔒 Security & Privacy
+
+- **Protected Routes**: All core collaborative areas (`/dashboard`, `/session`, `/battle`, `/calendar`, `/courses`, `/match`, `/leaderboard`) are wrapped with `<AuthGuard>`, restricting access to authenticated users.
+- **Hardware Safety**: WebRTC camera and microphone streams are explicitly terminated upon component unmount, battle completion, or manual toggle to prevent lingering hardware activity.
+- **Client-Side Anti-Cheat**: Active window visibility listeners prevent unauthorized screen-switching during competitive testing rounds.
 
 ---
 
 ## 👤 Author & Repository
 
-- **Repository**: [https://github.com/pranit5812/intellex](https://github.com/pranit5812/intellex.git)
-- **Owner**: [@pranit5812](https://github.com/pranit5812)
+- **Project Owner**: **Pranit** ([@pranit5812](https://github.com/pranit5812))
+- **Source Repository**: [https://github.com/pranit5812/intellex](https://github.com/pranit5812/intellex.git)
 
 ---
 
